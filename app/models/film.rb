@@ -4,4 +4,7 @@ class Film < ApplicationRecord
 
   has_many :directors_films
   has_many :directors, through: :directors_films
+
+  has_many :screenwriters_films
+  has_many :screenwriters, through: :screenwriters_films
 end

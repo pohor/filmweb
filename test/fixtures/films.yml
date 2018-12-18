@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  premiere: 2018-12-18
+  duration: 1
+
+two:
+  title: MyString
+  premiere: 2018-12-18
+  duration: 1

@@ -26,6 +26,10 @@
     <%= form.number_field :duration %>
   </div>
 
+  <div class="field">
+    <%= form.collection_check_boxes :genre_ids, Genre.all, :id, :name, :item_wrapper_class => 'inline' %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

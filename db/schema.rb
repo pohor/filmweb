@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2018_12_18_202553) do
     t.index ["genre_id", "film_id"], name: "index_films_genres_on_genre_id_and_film_id"
   end
 
-  create_table "films_screenwriters", id: false, force: :cascade do |t|
+  create_table "screenwriters_films", id: false, force: :cascade do |t|
     t.bigint "screenwriter_id", null: false
     t.bigint "film_id", null: false
     t.index ["film_id", "screenwriter_id"], name: "index_films_screenwriters_on_film_id_and_screenwriter_id"

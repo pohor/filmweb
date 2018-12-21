@@ -24,3 +24,30 @@ Genre.new(name: 'scifi').save
 Genre.new(name: 'thriller').save
 Genre.new(name: 'war').save
 Genre.new(name: 'western').save
+
+Director.new(name: 'Steven Spilberg').save
+Director.new(name: 'Alfred Hitckcock').save
+Director.new(name: 'Martin Scorsese').save
+Director.new(name: 'Ridley Scott').save
+Director.new(name: 'Quentin Tarantino').save
+Director.new(name: 'Francis Ford Copolla').save
+Director.new(name: 'Stanley Kubrick').save
+Director.new(name: 'George Lucas').save
+Director.new(name: 'Woody Allen').save
+Director.new(name: 'Mel Brooks').save
+Director.new(name: 'Mel Gibson').save
+Director.new(name: 'Daren Aronofsky').save
+Director.new(name: 'Wes Anderson').save
+Director.new(name: 'Peter Jackson').save
+
+Screenwriter.new(name: 'Quentin Tarantino').save
+Screenwriter.new(name: 'Woody Allen').save
+Screenwriter.new(name: 'Billy Wilder').save
+Screenwriter.new(name: 'Oliver Stone').save
+Screenwriter.new(name: 'Francis Ford Copolla').save
+Screenwriter.new(name: 'Christopher Nolan').save
+Screenwriter.new(name: 'George Lucas').save
+Screenwriter.new(name: 'Coen Brothers').save
+Screenwriter.new(name: 'Charlie Kaufma').save
+Screenwriter.new(name: 'Nora Ephron').save
+Screenwriter.new(name: 'James Cameron').save

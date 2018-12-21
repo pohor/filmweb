@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2018_12_18_202553) do
   create_table "directors_films", id: false, force: :cascade do |t|
     t.bigint "director_id", null: false
     t.bigint "film_id", null: false
+    t.index ["director_id", "film_id"], name: "index_directors_films_on_director_id_and_film_id"
+    t.index ["film_id", "director_id"], name: "index_directors_films_on_film_id_and_director_id"
   end
 
   create_table "films", force: :cascade do |t|
@@ -34,14 +36,18 @@ ActiveRecord::Schema.define(version: 2018_12_18_202553) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "films_genres", id: false, force: :cascade do |t|
+  create_table "genres_films", id: false, force: :cascade do |t|
     t.bigint "genre_id", null: false
     t.bigint "film_id", null: false
+    t.index ["film_id", "genre_id"], name: "index_films_genres_on_film_id_and_genre_id"
+    t.index ["genre_id", "film_id"], name: "index_films_genres_on_genre_id_and_film_id"
   end
 
   create_table "films_screenwriters", id: false, force: :cascade do |t|
     t.bigint "screenwriter_id", null: false
     t.bigint "film_id", null: false
+    t.index ["film_id", "screenwriter_id"], name: "index_films_screenwriters_on_film_id_and_screenwriter_id"
+    t.index ["screenwriter_id", "film_id"], name: "index_films_screenwriters_on_screenwriter_id_and_film_id"
   end
 
   create_table "genres", force: :cascade do |t|

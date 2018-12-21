@@ -11,34 +11,34 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
-  <div class="field">
+  <div class="form-group" >
     <%= form.label :premiere %>
     <%= form.date_select :premiere %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :duration %>
     <%= form.number_field :duration %>
   </div>
 
-  <div class="field">
-    <%= form.collection_check_boxes :genre_ids, Genre.all, :id, :name, :item_wrapper_class => 'inline' %>
+  <div class="form-group">
+    <%= form.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
   </div>
 
-  <div class="field">
+  <div class="form-group"">
     <%= form.collection_select :director_ids, Director.all, :id, :name %>
   </div>
 
-  <div class="field">
-    <%= form.collection_select :screenwriter_ids, Screenwriter.all, :id, :name %>
+  <div class="form-group">
+    <%= form.collection_select :screenwriter_ids, Screenwriter.all, :id, :name%>
   </div>
 
-  <div class="actions">
+  <div class="form-group">
     <%= form.submit %>
   </div>
 <% end %>

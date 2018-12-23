@@ -6,4 +6,5 @@
 </p>
 
 <%= link_to 'Edit', edit_screenwriter_path(@screenwriter) %> |
-<%= link_to 'Back', screenwriters_path %>
+<%= link_to 'Back', screenwriters_path %> |
+<%= link_to 'Destroy', @screenwriter, method: :delete, data: { confirm: 'Are you sure?' } %>

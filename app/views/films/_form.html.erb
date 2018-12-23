@@ -18,7 +18,7 @@
 
   <div class="form-group" >
     <%= form.label :premiere %>
-    <%= form.date_select :premiere %>
+    <%= form.date_select :premiere, start_year: Date.today.year - 120, end_year: Date.today.year, order: [:day, :month, :year] %>
   </div>
 
   <div class="form-group">

@@ -7,4 +7,6 @@ class Film < ApplicationRecord
 
   has_many :screenwriters_films
   has_many :screenwriters, through: :screenwriters_films
+
+  belongs_to :user
 end

@@ -1,6 +1,7 @@
 class FilmsController < ApplicationController
   before_action :set_film, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authorize_film, only: [:destroy, :edit, :update]
   # GET /films
   # GET /films.json
   def index
@@ -25,7 +26,7 @@ class FilmsController < ApplicationController
   # POST /films.json
   def create
     @film = Film.new(film_params)
-
+    @film.user = current_user if current_user
     respond_to do |format|
       if @film.save
         format.html { redirect_to @film, notice: 'Film was successfully created.' }
@@ -41,7 +42,7 @@ class FilmsController < ApplicationController
   # PATCH/PUT /films/1.json
   def update
     respond_to do |format|
-      if @film.update(film_params)
+      if @film.update(film_params) || current_user.admin?
         format.html { redirect_to @film, notice: 'Film was successfully updated.' }
         format.json { render :show, status: :ok, location: @film }
       else
@@ -62,6 +63,15 @@ class FilmsController < ApplicationController
   end
 
   private
+
+    def authorize_film
+      if @film.user != current_user && !current_user&.admin?
+        flash[:alert] = "You are not allowed to do this."
+        redirect_to films_path
+        return false
+      end
+    true
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_film
       @film = Film.find(params[:id])

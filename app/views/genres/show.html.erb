@@ -5,6 +5,6 @@
   <%= @genre.name %>
 </p>
 
-<%= link_to 'Edit', edit_genre_path(@genre) %> |
-<%= link_to 'Back', genres_path %>
-<%= link_to 'Destroy', @genre, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_genre_path(@genre), class:"text-white" %> |
+<%= link_to 'Back', genres_path, class:"text-white" %>
+<%= link_to 'Destroy', @genre, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %>

@@ -5,6 +5,6 @@
   <%= @director.name %>
 </p>
 
-<%= link_to 'Edit', edit_director_path(@director) %> |
-<%= link_to 'Back', directors_path %>
-<%= link_to 'Destroy', @director, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_director_path(@director), class:"text-white" %> |
+<%= link_to 'Back', directors_path, class:"text-white" %>
+<%= link_to 'Destroy', @director, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %>

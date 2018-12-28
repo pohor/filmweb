@@ -9,31 +9,36 @@
   </head>
 
   <body class="p-3 mb-2 bg-secondary text-white">
+
     <% if notice %>
       <div class="notice">
       <%= notice %>
-    <% end %>
       </div>
+    <% end %>
 
     <% if alert %>
       <div class="alert">
       <%= alert %>
-    <% end %>
       </div>
-
-  <nav class="navbar navbar-dark bg-dark text-white">
-    <% if user_signed_in? %>
-      Hello, <%= current_user.email %>! | <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"text-white" %>
-    <% else %>
-      <%= link_to 'Sign in', new_user_session_path, class:"text-white" %>
-      <%= link_to 'Sign up', new_user_registration_path, class:"text-white" %>
     <% end %>
-    <%= link_to 'Films', films_path, class:"text-white" %>
-    <%= link_to 'Genres', genres_path, class:"text-white" %>
-    <%= link_to 'Directors', directors_path, class:"text-white" %>
-    <%= link_to 'Screenwriters', screenwriters_path, class:"text-white"%>
-  </nav>
 
-    <%= yield %>
+    <nav class="navbar navbar-dark bg-dark w-100 p-3 text-white">
+      <% if user_signed_in? %>
+        Hello, <%= current_user.email %>! | <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"text-white" %>
+      <% else %>
+        <%= link_to 'Sign in', new_user_session_path, class:"text-white" %>
+        <%= link_to 'Sign up', new_user_registration_path, class:"text-white" %>
+      <% end %>
+      <%= link_to 'Films', films_path, class:"text-white" %>
+      <%= link_to 'Genres', genres_path, class:"text-white" %>
+      <%= link_to 'Directors', directors_path, class:"text-white" %>
+      <%= link_to 'Screenwriters', screenwriters_path, class:"text-white"%>
+    </nav>
+
+    <div class="container bg-warning text-dark">
+      <%= yield %>
+    </div>
+
   </body>
+
 </html>

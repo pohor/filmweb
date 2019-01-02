@@ -1,6 +1,7 @@
 class ScreenwritersController < ApplicationController
   before_action :set_screenwriter, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authorize_user, only: [:destroy, :edit, :update]
   # GET /screenwriters
   # GET /screenwriters.json
   def index
@@ -25,7 +26,7 @@ class ScreenwritersController < ApplicationController
   # POST /screenwriters.json
   def create
     @screenwriter = Screenwriter.new(screenwriter_params)
-
+    @screenwriter.user = current_user
     respond_to do |format|
       if @screenwriter.save
         format.html { redirect_to @screenwriter, notice: 'Screenwriter was successfully created.' }
@@ -41,7 +42,7 @@ class ScreenwritersController < ApplicationController
   # PATCH/PUT /screenwriters/1.json
   def update
     respond_to do |format|
-      if @screenwriter.update(screenwriter_params)
+      if @screenwriter.update(screenwriter_params) || current_user&.admin?
         format.html { redirect_to @screenwriter, notice: 'Screenwriter was successfully updated.' }
         format.json { render :show, status: :ok, location: @screenwriter }
       else
@@ -62,6 +63,15 @@ class ScreenwritersController < ApplicationController
   end
 
   private
+
+  def authorize_user
+      if @screenwriter.user != current_user && !current_user&.admin?
+        flash[:alert] = "You are not allowed to do this."
+        redirect_to screenwriters_path
+        return false
+      end
+    true
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_screenwriter
       @screenwriter = Screenwriter.find(params[:id])

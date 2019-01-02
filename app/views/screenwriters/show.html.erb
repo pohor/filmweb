@@ -5,6 +5,10 @@
   <%= @screenwriter.name %>
 </p>
 
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_screenwriter_path(@screenwriter), class:"text-white" %> |
-<%= link_to 'Back', screenwriters_path, class:"text-white"%> |
-<%= link_to 'Destroy', @screenwriter, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %>
+  <% if current_user&.admin? %>
+<%= link_to 'Destroy', @screenwriter, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %> |
+  <% end %>
+<% end %>
+<%= link_to 'Back', screenwriters_path, class:"text-white"%>

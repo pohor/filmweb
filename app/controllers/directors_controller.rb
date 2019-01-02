@@ -42,7 +42,7 @@ class DirectorsController < ApplicationController
   # PATCH/PUT /directors/1.json
   def update
     respond_to do |format|
-      if @director.update(director_params) || current_user.admin?
+      if @director.update(director_params) || current_user&.admin?
         format.html { redirect_to @director, notice: 'Director was successfully updated.' }
         format.json { render :show, status: :ok, location: @director }
       else

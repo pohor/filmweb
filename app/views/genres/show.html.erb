@@ -4,6 +4,14 @@
   <strong>Name:</strong>
   <%= @genre.name %>
 </p>
+<p>
+  <strong>Added by:</strong>
+  <% if @genre.user&.admin? %>
+  <%= 'Admin' %>
+  <% else %>
+  <%= @genre.user.email %>
+  <% end %>
+</p>
 
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_genre_path(@genre), class:"text-white" %> |

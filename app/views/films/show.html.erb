@@ -6,6 +6,13 @@
 </p>
 
 <p>
+  <strong>Genres:</strong>
+  <% @film.genres.each do |genre| %>
+  <%= genre.name  %>
+  <% end %>
+</p>
+
+<p>
   <strong>Premiere:</strong>
   <%= @film.premiere %>
 </p>
@@ -15,6 +22,21 @@
   <%= @film.duration %>
 </p>
 
+<p>
+  <strong>Added by:</strong>
+  <% if @film.user&.admin? %>
+  <%= 'Admin' %>
+  <% else %>
+  <%= @film.user.email %>
+  <% end %>
+</p>
+
+
+
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_film_path(@film), class:"text-white" %> |
-<%= link_to 'Back', films_path, class:"text-white" %> |
-<%= link_to 'Destroy', @film, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %>
+  <% if current_user&.admin? %>
+<%= link_to 'Destroy', @film, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %> |
+  <% end %>
+<% end %>
+<%= link_to 'Back', films_path, class:"text-white" %>

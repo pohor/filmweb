@@ -2,10 +2,16 @@
 
 <h1>Genres</h1>
 
-<table class="table">
+<table class="table text-white">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
+      <%if user_signed_in? %>
+      <th scope="col"></th>
+        <% if current_user&.admin? %>
+      <th scope="col"></th>
+        <% end %>
+      <% end %>
     </tr>
   </thead>
 
@@ -14,9 +20,9 @@
       <tr scope="row">
         <td><%= link_to genre.name, genre, class:"text-white" %></td>
         <% if user_signed_in? %>
-        <td><%= link_to 'Edit', edit_genre_path(genre) %></td>
+        <td><%= link_to 'Edit', edit_genre_path(genre), class:"text-white" %></td>
           <% if current_user&.admin? %>
-        <td><%= link_to 'Destroy', genre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', genre, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %></td>
           <% end %>
         <% end %>
       </tr>
@@ -27,6 +33,6 @@
 <br>
 
 <% if user_signed_in? %>
-<%= link_to 'New Genre', new_genre_path, class:"text-white" %>
+<%= link_to 'New Genre', new_genre_path, class:"text-white" %> |
 <% end %>
 <%= link_to 'Back', films_path, class:"text-white" %>

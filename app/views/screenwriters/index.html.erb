@@ -2,7 +2,7 @@
 
 <h1>Screenwriters</h1>
 
-<table class="table">
+<table class="table text-white">
   <thead class="thead-dark">
     <tr>
       <th scope ="col">Name</th>
@@ -20,9 +20,9 @@
       <tr scope="row">
         <td><%= link_to screenwriter.name, screenwriter, class:"text-white" %></td>
         <% if user_signed_in? %>
-        <td><%= link_to 'Edit', edit_screenwriter_path(screenwriter) %></td>
+        <td><%= link_to 'Edit', edit_screenwriter_path(screenwriter), class:"text-white" %></td>
           <% if current_user&.admin? %>
-        <td><%= link_to 'Destroy', screenwriter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', screenwriter, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %></td>
           <% end %>
         <% end %>
       </tr>
@@ -33,5 +33,5 @@
 <br>
 
 <% if user_signed_in? %>
-<%= link_to 'New Screenwriter', new_screenwriter_path %>
+<%= link_to 'New Screenwriter', new_screenwriter_path, class:"text-white" %>
 <% end %>

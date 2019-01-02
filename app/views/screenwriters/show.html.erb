@@ -4,6 +4,14 @@
   <strong>Name:</strong>
   <%= @screenwriter.name %>
 </p>
+<p>
+  <strong>Added by:</strong>
+  <% if @screenwriter.user&.admin? %>
+  <%= 'Admin' %>
+  <% else %>
+  <%= @film.user.email %>
+  <% end %>
+</p>
 
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_screenwriter_path(@screenwriter), class:"text-white" %> |

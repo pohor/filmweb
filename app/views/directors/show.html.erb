@@ -4,7 +4,19 @@
   <strong>Name:</strong>
   <%= @director.name %>
 </p>
+<p>
+  <strong>Added by:</strong>
+  <% if @director.user.admin %>
+    <%= 'Admin' %>
+  <% else %>
+    <%= @director.user.email %>
+  <% end %>
+</p>
 
-<%= link_to 'Edit', edit_director_path(@director), class:"text-white" %> |
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_director_path(@director), class:"text-white" %> |
+  <% if current_user&.admin? %>
+  <%= link_to 'Destroy', @director, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %> |
+  <% end %>
+<% end %>
 <%= link_to 'Back', directors_path, class:"text-white" %>
-<%= link_to 'Destroy', @director, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %>

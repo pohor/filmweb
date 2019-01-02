@@ -22,7 +22,7 @@
         <td>
           <%= link_to 'Edit', edit_director_path(director), class:"text-white" %>
         </td>
-            <% if director.user == current_user || current_user&.admin? %>
+            <% if current_user&.admin? %>
         <td>
           <%= link_to 'Destroy', director, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %>
             <% end %>

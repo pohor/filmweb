@@ -3,18 +3,21 @@
 <h1>Directors</h1>
 
 <table class="table">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
+      <% if user_signed_in? %>
       <th scope="col"></th>
+        <% if current_user&.admin? %>
       <th scope="col"></th>
+        <% end %>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-    <th scope="row">
     <% @directors.each do |director| %>
+    <tr scope="row">
         <td>
           <%= link_to director.name, director, class:"text-white" %>
         </td>
@@ -30,7 +33,6 @@
         <% end %>
       </tr>
     <% end %>
-    </th>
   </tbody>
 </table>
 

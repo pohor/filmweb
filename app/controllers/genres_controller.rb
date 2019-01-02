@@ -1,5 +1,7 @@
 class GenresController < ApplicationController
   before_action :set_genre, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authorize_user, only: [:destroy, :edit, :update]
 
   # GET /genres
   # GET /genres.json
@@ -25,7 +27,7 @@ class GenresController < ApplicationController
   # POST /genres.json
   def create
     @genre = Genre.new(genre_params)
-
+    @genre.user = current_user
     respond_to do |format|
       if @genre.save
         format.html { redirect_to @genre, notice: 'Genre was successfully created.' }
@@ -41,7 +43,7 @@ class GenresController < ApplicationController
   # PATCH/PUT /genres/1.json
   def update
     respond_to do |format|
-      if @genre.update(genre_params)
+      if @genre.update(genre_params) || current_user&.admin?
         format.html { redirect_to @genre, notice: 'Genre was successfully updated.' }
         format.json { render :show, status: :ok, location: @genre }
       else
@@ -62,6 +64,16 @@ class GenresController < ApplicationController
   end
 
   private
+
+    def authorize_user
+      if @genre.user != current_user && !current_user&.admin?
+        flash[:alert] = "You are not allowed to do this."
+        redirect_to genres_path
+        return false
+      end
+    true
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_genre
       @genre = Genre.find(params[:id])

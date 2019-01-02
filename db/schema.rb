@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_105852) do
+ActiveRecord::Schema.define(version: 2019_01_02_141537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_01_02_105852) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_genres_on_user_id"
   end
 
   create_table "genres_films", id: false, force: :cascade do |t|
@@ -81,4 +83,5 @@ ActiveRecord::Schema.define(version: 2019_01_02_105852) do
 
   add_foreign_key "directors", "users"
   add_foreign_key "films", "users"
+  add_foreign_key "genres", "users"
 end

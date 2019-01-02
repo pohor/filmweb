@@ -5,6 +5,10 @@
   <%= @genre.name %>
 </p>
 
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_genre_path(@genre), class:"text-white" %> |
+  <% if current_user&.admin? %>
+<%= link_to 'Destroy', @genre, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %> |
+  <% end %>
+<% end %>
 <%= link_to 'Back', genres_path, class:"text-white" %>
-<%= link_to 'Destroy', @genre, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %>

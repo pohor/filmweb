@@ -1,6 +1,7 @@
 class DirectorsController < ApplicationController
   before_action :set_director, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authorize_user, only: [:destroy, :edit, :update]
   # GET /directors
   # GET /directors.json
   def index
@@ -25,7 +26,7 @@ class DirectorsController < ApplicationController
   # POST /directors.json
   def create
     @director = Director.new(director_params)
-
+    @director.user = current_user if current_user
     respond_to do |format|
       if @director.save
         format.html { redirect_to @director, notice: 'Director was successfully created.' }
@@ -41,7 +42,7 @@ class DirectorsController < ApplicationController
   # PATCH/PUT /directors/1.json
   def update
     respond_to do |format|
-      if @director.update(director_params)
+      if @director.update(director_params) || current_user.admin?
         format.html { redirect_to @director, notice: 'Director was successfully updated.' }
         format.json { render :show, status: :ok, location: @director }
       else
@@ -63,6 +64,15 @@ class DirectorsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def authorize_user
+      if @director.user != current_user && !current_user&.admin?
+        flash[:alert] = "You are not allowed to do this."
+        redirect_to directors_path
+        return false
+      end
+    true
+    end
+
     def set_director
       @director = Director.find(params[:id])
     end

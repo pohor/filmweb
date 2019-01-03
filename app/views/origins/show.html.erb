@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @origin.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @origin.description %>
+</p>
+
+<% if user_signed_in? %>
+<td><%= link_to 'Edit', edit_origin_path(@origin), class:'text-white' %></td> |
+  <% if current_user&.admin? %>
+<td><%= link_to 'Destroy', @origin, method: :delete, data: { confirm: 'Are you sure?' }, class:'text-white' %></td> |
+  <% end %>
+<% end %>
+<%= link_to 'Back', origins_path, class:"text-white" %>

@@ -6,9 +6,30 @@
 </p>
 
 <p>
+  <strong>Origin:</strong>
+  <% @film.origins.each do |origin| %>
+  | <%= link_to origin.name, origin_path(origin), class:"text-white" %>
+  <% end %>
+</p>
+
+<p>
   <strong>Genres:</strong>
   <% @film.genres.each do |genre| %>
-  <%= genre.name  %>
+  | <%= link_to genre.name, genre_path(genre), class:"text-white" %>
+  <% end %>
+</p>
+
+<p>
+<strong>Directors:</strong>
+<% @film.directors.each do |director| %>
+| <%= link_to director.name, director_path(director), class:"text-white" %>
+   <% end %>
+</p>
+
+<p>
+    <strong>Screenwriters:</strong>
+  <% @film.screenwriters.each do |screenwriter| %>
+| <%= link_to screenwriter.name, screenwriter_path(screenwriter), class:"text-white" %>
   <% end %>
 </p>
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :origins
   devise_for :users
   resources :screenwriters
   resources :directors

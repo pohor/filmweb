@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Origins</h1>
+
+<table class="table text-white">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <%if user_signed_in? %>
+      <th scope="col"></th>
+        <% if current_user&.admin? %>
+      <th scope="col"></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @origins.each do |origin| %>
+      <tr scope="row">
+        <td><%= link_to origin.name, origin, class:'text-white' %></td>
+        <% if user_signed_in? %>
+        <td><%= link_to 'Edit', edit_origin_path(origin), class:'text-white' %></td>
+          <% if current_user&.admin? %>
+        <td><%= link_to 'Destroy', origin, method: :delete, data: { confirm: 'Are you sure?' }, class:'text-white' %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Origin', new_origin_path %>

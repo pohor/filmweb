@@ -5,18 +5,14 @@
 <table class="table text-white">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Director</th>
-      <th scope="col">Screenwriter</th>
-      <th scope="col">Premiere</th>
-      <th scope="col">Duration</th>
-      <th scope="col">Overall rating</th>
-      <th scope="col">Number of reviews</th>
+      <th class="text-center" scope="col">Title</th>
+      <th class="text-center" scope="col">Genre</th>
+      <th class="text-center" scope="col">Rating</th>
+      <th class="text-center" scope="col">Number of reviews</th>
       <% if user_signed_in? %>
-      <th scope="col"></th>
+      <th class="text-center" scope="col"></th>
         <% if current_user&.admin? %>
-      <th scope="col"></th>
+      <th class="text-center" scope="col"></th>
         <% end %>
       <% end %>
     </tr>
@@ -26,21 +22,14 @@
     <% @films.each do |film| %>
     <tr scope ="row">
         <td><%= link_to film.title, film, class:"text-white" %></td>
+        <td><% film.origins.each do |origin| %>
+          | <%= link_to origin.name, origin_path(origin), class:'text-white'%>
+          <% end %>
+        </td>
         <td><% film.genres.each do |genre| %>
           | <%= link_to genre.name, genre_path(genre), class:'text-white'%>
           <% end %>
         </td>
-        <td>
-          <% film.directors.each do |director| %>
-             | <%= link_to director.name, director_path(director), class:"text-white" %>
-             <% end %>
-        </td>
-        <td><% film.screenwriters.each do |screenwriter| %>
-            | <%= link_to screenwriter.name, screenwriter_path(screenwriter), class:"text-white" %>
-            <% end %>
-        </td>
-        <td><%= film.premiere %></td>
-        <td><%= film.duration %></td>
         <td><%= film.avg_rate %></td>
         <td><%= film.reviews.count %></td>
         <% if user_signed_in? %>
@@ -60,5 +49,6 @@
 <%= link_to 'New Film', new_film_path, class:"text-white"%> |
 <%= link_to 'New Genre', new_genre_path, class:"text-white"%> |
 <%= link_to 'New Director', new_director_path, class:"text-white"%> |
-<%= link_to 'New Screenwriter', new_screenwriter_path, class:"text-white"%>
+<%= link_to 'New Screenwriter', new_screenwriter_path, class:"text-white"%> |
+<%= link_to 'New Origin', new_origin_path, class:"text-white"%>
 <% end %>

@@ -30,11 +30,10 @@ class FilmsController < ApplicationController
     @film.user = current_user if current_user
     respond_to do |format|
       if @film.save
-        format.html { redirect_to @film, notice: 'Film was successfully created.' }
-        format.json { render :show, status: :created, location: @film }
+        flash[:notice] = "You have successfuly added a new Film."
+        redirect_to film_path(@film)
       else
-        format.html { render :new }
-        format.json { render json: @film.errors, status: :unprocessable_entity }
+        render 'new'
       end
     end
   end
@@ -42,25 +41,20 @@ class FilmsController < ApplicationController
   # PATCH/PUT /films/1
   # PATCH/PUT /films/1.json
   def update
-    respond_to do |format|
       if @film.update(film_params) || current_user.admin?
-        format.html { redirect_to @film, notice: 'Film was successfully updated.' }
-        format.json { render :show, status: :ok, location: @film }
+        flash[:notice] = "Film was successfuly updated."
+        redirect_to film_path(@film)
       else
-        format.html { render :edit }
-        format.json { render json: @film.errors, status: :unprocessable_entity }
+        render 'edit'
       end
-    end
   end
 
   # DELETE /films/1
   # DELETE /films/1.json
   def destroy
     @film.destroy
-    respond_to do |format|
-      format.html { redirect_to films_url, notice: 'Film was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      flash[:alert] = 'Film was successfully destroyed.'
+      redirect_to films_path
   end
 
   private
@@ -80,6 +74,6 @@ class FilmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def film_params
-      params.require(:film).permit(:title, :premiere, :duration, :description, genre_ids: [], director_ids: [], screenwriter_ids: [])
+      params.require(:film).permit(:title, :premiere, :duration, :description, genre_ids: [], director_ids: [], screenwriter_ids: [], origin_ids: [])
     end
 end

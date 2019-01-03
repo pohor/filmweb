@@ -11,6 +11,48 @@
   <% end %>
 </p>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-center" scope="col">Title</th>
+      <th class="text-center" scope="col">Origin</th>
+      <th class="text-center" scope="col">Genre</th>
+      <th class="text-center" scope="col">Rating</th>
+      <th class="text-center" scope="col">Number of reviews</th>
+      <% if user_signed_in? %>
+      <th class="text-center" scope="col"></th>
+        <% if current_user&.admin? %>
+      <th class="text-center" scope="col"></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @screenwriter.films.each do |film| %>
+    <tr scope ="row">
+        <td class="text-center"><%= link_to film.title, film, class:"text-white" %></td>
+        <td class="text-center"><% film.origins.each do |origin| %>
+          | <%= link_to origin.name, origin_path(origin), class:'text-white'%>
+          <% end %>
+        </td>
+        <td class="text-center"><% film.genres.each do |genre| %>
+          | <%= link_to genre.name, genre_path(genre), class:'text-white'%>
+          <% end %>
+        </td>
+        <td class="text-center"><%= film.avg_rate %></td>
+        <td class="text-center"><%= film.reviews.count %></td>
+        <% if user_signed_in? %>
+        <td class="text-center"><%= link_to 'Edit', edit_film_path(film), class:"text-white" %></td>
+          <% if current_user&.admin? %>
+        <td class="text-center"><%= link_to 'Destroy', film, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-white" %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_screenwriter_path(@screenwriter), class:"text-white" %> |
   <% if current_user&.admin? %>

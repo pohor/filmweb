@@ -12,42 +12,42 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :title %>
+    <strong><%= form.label :title %></strong>
     <%= form.text_field :title %>
   </div>
 
   <div class="form-group" >
-    <%= form.label :premiere %>
+    <strong><%= form.label :premiere %></strong>
     <%= form.date_select :premiere, start_year: Date.today.year - 120, end_year: Date.today.year, order: [:day, :month, :year] %>
   </div>
 
   <div class="form-group">
-    <%= form.label :duration %>
+    <strong><%= form.label :duration %></strong>
     <%= form.number_field :duration %>
   </div>
 
   <div class="form-group">
-    <%= form.label :genre %><br>
+    <strong><%= form.label :genre %></strong><br>
     <%= form.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
   </div>
 
   <div class="form-group">
-    <%= form.label :director %><br>
+    <strong><%= form.label :director %></strong><br>
     <%= form.collection_check_boxes :director_ids, Director.all, :id, :name %>
   </div>
 
   <div class="form-group">
-    <%= form.label :screenwriter %><br>
+    <strong><%= form.label :screenwriter %></strong><br>
     <%= form.collection_check_boxes :screenwriter_ids, Screenwriter.all, :id, :name %>
   </div>
 
   <div class="form-group">
-    <%= form.label :origin %><br>
+    <strong><%= form.label :origin %></strong><br>
     <%= form.collection_check_boxes :origin_ids, Origin.all, :id, :name %>
   </div>
 
   <div class="form-group">
-    <%= form.label :description %><br>
+    <strong><%= form.label :description %></strong><br>
     <%= form.text_area :description %>
   </div>
 

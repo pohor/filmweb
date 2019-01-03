@@ -28,14 +28,12 @@ class FilmsController < ApplicationController
   def create
     @film = Film.new(film_params)
     @film.user = current_user if current_user
-    respond_to do |format|
       if @film.save
         flash[:notice] = "You have successfuly added a new Film."
         redirect_to film_path(@film)
       else
         render 'new'
       end
-    end
   end
 
   # PATCH/PUT /films/1

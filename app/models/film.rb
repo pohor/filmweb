@@ -15,4 +15,17 @@ class Film < ApplicationRecord
   belongs_to :user
 
   has_many :reviews, dependent: :destroy
+
+  def avg_rate
+    sum = 0
+    if reviews.count == 0
+      return 'No rates yet'
+    else
+      reviews.each do |review|
+        sum += review.rate
+      end
+      return (sum / reviews.count).to_f
+    end
+  end
+  
 end

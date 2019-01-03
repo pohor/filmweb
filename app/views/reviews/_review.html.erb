@@ -1,6 +1,6 @@
 <p>
   <strong>Author:</strong>
-  <%= review.author %>
+  <%= review.user.email %>
 </p>
 <p>
   <strong>Rate:</strong>
@@ -11,6 +11,11 @@
   <%= review.comment %>
 </p>
 
-
-<%= link_to 'Delete review', film_review_path(film_id: review.film.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Edit review', edit_film_review_path(film_id: review.film.id, id: review.id) %>
+<% if current_user == review.user || current_user&.admin? %>
+<%= link_to 'Delete review', film_review_path(film_id: review.film.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' }, class:'text-white' %> |
+<%= link_to 'Edit review', edit_film_review_path(film_id: review.film.id, id: review.id), class:'text-white' %>
+<% end %>
+<br>
+___________________________________________________________
+<br>
+<br>

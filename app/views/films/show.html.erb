@@ -13,6 +13,15 @@
 </p>
 
 <p>
+  <strong>Overall rating:</strong>
+  <%= @film.avg_rate %>
+  <% if @film.reviews.any? %>
+    out of
+    <%= pluralize(@film.reviews.count, 'review') %>
+  <% end %>
+</p>
+
+<p>
   <strong>Premiere:</strong>
   <%= @film.premiere %>
 </p>
@@ -39,10 +48,11 @@
 <br>
 <br>
 <p>
+<% if user_signed_in? %>
 <strong>Add a review:</strong>
 <%= render 'reviews/form' %>
 </p>
-
+<% end %>
 
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_film_path(@film), class:"text-white" %> |

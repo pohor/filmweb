@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :find_film
-
+  before_action :logged_in?, only: [:create]
+  before_action :authenticate_user, only: [:destroy, :edit, :update]
 
   def edit
   end
@@ -10,6 +11,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.film = @film
+    @review.user = current_user
     if @review.save
       redirect_to film_path(@film)
     else
@@ -33,6 +35,19 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+    def authenticate_user
+      if @review.user != current_user && !current_user&.admin?
+        flash[:alert] = "You are not allowed to do this."
+        redirect_to film_path(@film)
+        return false
+      end
+    true
+    end
+
+    def logged_in?
+      current_user
+    end
 
     def find_film
       @film = Film.find(params[:film_id])

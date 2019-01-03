@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @film.title %>
+<p><h5>
+  <strong><%= @film.title %></strong>
+  </h5>
 </p>
 
 <p>
@@ -30,12 +30,18 @@
   <%= @film.user.email %>
   <% end %>
 </p>
-
-<h2>Reviews</h2>
+<br>
+<br>
+<p>
+<h5>Reviews:</h5>
 <%= render @film.reviews %>
-
-<h2>Add a review:</h2>
+</p>
+<br>
+<br>
+<p>
+<strong>Add a review:</strong>
 <%= render 'reviews/form' %>
+</p>
 
 
 <% if user_signed_in? %>

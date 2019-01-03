@@ -1,5 +1,6 @@
 class Film < ApplicationRecord
   validates :title, presence: true, length: 3..50
+  validates :description, presence: true, length: 3..2000
   validates :duration, presence: true, numericality: { greater_than: 1, less_than: 500 }
   validates :genres, presence: true
 
@@ -27,5 +28,5 @@ class Film < ApplicationRecord
       return (sum / reviews.count).to_f
     end
   end
-  
+
 end

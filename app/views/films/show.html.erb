@@ -32,6 +32,11 @@
 </p>
 
 <p>
+  <strong>Description:</strong>
+  <%= @film.description %>
+</p>
+
+<p>
   <strong>Added by:</strong>
   <% if @film.user&.admin? %>
   <%= 'Admin' %>

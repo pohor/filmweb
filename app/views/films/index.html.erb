@@ -27,15 +27,16 @@
     <tr scope ="row">
         <td><%= link_to film.title, film, class:"text-white" %></td>
         <td><% film.genres.each do |genre| %>
-          <%= genre.name  %>
+          | <%= link_to genre.name, genre_path(genre), class:'text-white'%>
           <% end %>
         </td>
-        <td><% film.directors.each do |director| %>
-            <%= director.name %>
-            <% end %>
+        <td>
+          <% film.directors.each do |director| %>
+             | <%= link_to director.name, director_path(director), class:"text-white" %>
+             <% end %>
         </td>
         <td><% film.screenwriters.each do |screenwriter| %>
-            <%= screenwriter.name %>
+            | <%= link_to screenwriter.name, screenwriter_path(screenwriter), class:"text-white" %>
             <% end %>
         </td>
         <td><%= film.premiere %></td>

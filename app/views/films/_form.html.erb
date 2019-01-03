@@ -27,15 +27,18 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :genre %><br>
     <%= form.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
   </div>
 
-  <div class="form-group"">
-    <%= form.collection_select :director_ids, Director.all, :id, :name %>
+  <div class="form-group">
+    <%= form.label :director %><br>
+    <%= form.collection_check_boxes :director_ids, Director.all, :id, :name %>
   </div>
 
   <div class="form-group">
-    <%= form.collection_select :screenwriter_ids, Screenwriter.all, :id, :name%>
+    <%= form.label :screenwriter %><br>
+    <%= form.collection_check_boxes :screenwriter_ids, Screenwriter.all, :id, :name %>
   </div>
 
   <div class="form-group">

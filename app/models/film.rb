@@ -13,4 +13,6 @@ class Film < ApplicationRecord
   has_many :screenwriters, through: :screenwriters_films
 
   belongs_to :user
+
+  has_many :reviews, dependent: :destroy
 end

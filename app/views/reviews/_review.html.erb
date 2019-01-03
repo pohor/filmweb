@@ -1,0 +1,15 @@
+<p>
+  <strong>Author:</strong>
+  <%= review.author %>
+</p>
+<p>
+  <strong>Rate:</strong>
+  <%= review.rate %>
+</p>
+<p>
+  <strong>Opinion:</strong>
+  <%= review.comment %>
+</p>
+
+<%= link_to 'Delete review', film_review_path(film_id: review.film.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit review', edit_film_review_path(film_id: review.film.id, id: review.id) %>

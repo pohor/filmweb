@@ -1,0 +1,7 @@
+<h1>Editing Review</h1>
+
+<%= render 'form', review: @review %>
+
+<%= link_to 'delete review', film_review_path(film_id: @review.film.id, id: @film.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<%= link_to 'Back', film_path(@film) %>

@@ -31,6 +31,11 @@
   <% end %>
 </p>
 
+<h2>Reviews</h2>
+<%= render @film.reviews %>
+
+<h2>Add a review:</h2>
+<%= render 'reviews/form' %>
 
 
 <% if user_signed_in? %>

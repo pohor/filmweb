@@ -34,7 +34,7 @@ class Film < ApplicationRecord
 
   def self.search(search)
     if search
-      where('title LIKE ?', "%#{search}%").order('id DESC')
+      where('title ILIKE ?', "%#{search}%").order('id DESC')
     else
       all
     end

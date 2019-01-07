@@ -65,10 +65,11 @@
 </p>
 <br>
 <br>
-<p>
-<h5>Reviews:</h5>
-<%= render @film.reviews %>
-</p>
+<button id="show">Show reviews</button>
+ <div id="reviews" style="display:none;">
+ <h5>Reviews:</h5>
+  <%= render @film.reviews %>
+</div>
 <br>
 <br>
 <p>

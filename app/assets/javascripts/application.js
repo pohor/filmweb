@@ -14,3 +14,17 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+window.addEventListener('load', function () {
+  var button = document.getElementById('show');
+  var reviews = document.getElementById('reviews');
+  button.addEventListener('click', function () {
+    if (button.innerHTML == "Show reviews") {
+      reviews.setAttribute('style','display:block')
+      button.innerHTML = "Hide reviews"
+    } else {
+      reviews.setAttribute('style','display:none');
+      button.innerHTML = "Show reviews"
+    }
+  })
+})

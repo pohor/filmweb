@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ruby version
+2.5.3
 
-Things you may want to cover:
+## Rails version
+5.2.2
 
-* Ruby version
+## Additional gems used:
+- bootstrap 4.0
+- devise
 
-* System dependencies
+## What is this app?
+This is an application developed as a homwework during the rails course I attended Oct '18 - Feb '19.
+It was used to learn basics or rails programming as well as some basic js.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
